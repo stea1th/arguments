@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Flag(name = "list of integers", flag = "d")
-public class IntegerListFlag implements IFlag<List<Integer>> {
-
-    private List<Integer> value;
+public class IntegerListFlag extends FlagBase<List<Integer>> {
 
     public IntegerListFlag(String line) {
         this.value = convertToList(line);
@@ -23,10 +21,5 @@ public class IntegerListFlag implements IFlag<List<Integer>> {
             System.exit(-1);
         }
         return list;
-    }
-
-    @Override
-    public List<Integer> getValue() {
-        return value;
     }
 }

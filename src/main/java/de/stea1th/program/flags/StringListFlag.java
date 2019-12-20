@@ -4,9 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Flag(name = "list of strings", flag = "g")
-public class StringListFlag implements IFlag<List<String>> {
-
-    private List<String> value;
+public class StringListFlag extends FlagBase<List<String>> {
 
     public StringListFlag(String line) {
         this.value = convertToList(line);
@@ -14,10 +12,5 @@ public class StringListFlag implements IFlag<List<String>> {
 
     private List<String> convertToList(String line) {
         return Arrays.asList(line.split(","));
-    }
-
-    @Override
-    public List<String> getValue() {
-        return value;
     }
 }

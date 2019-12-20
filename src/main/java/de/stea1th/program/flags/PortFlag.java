@@ -1,16 +1,14 @@
 package de.stea1th.program.flags;
 
 @Flag(name = "port", flag = "p")
-public class PortFlag implements IFlag<Integer> {
-
-    private Integer value;
+public class PortFlag extends FlagBase<Integer> {
 
     public PortFlag(String line) {
-        this.value = convertString(line);
+        this.value = convertToInt(line);
     }
 
 
-    private Integer convertString(String line) {
+    private Integer convertToInt(String line) {
         Integer result = null;
         if (line.equals("")) {
             result = 0;
@@ -23,10 +21,5 @@ public class PortFlag implements IFlag<Integer> {
             }
         }
         return result;
-    }
-
-    @Override
-    public Integer getValue() {
-        return value;
     }
 }
