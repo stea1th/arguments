@@ -5,18 +5,37 @@ import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class FlagRegistry {
 
+    private static FlagRegistry instance = null;
 
-    public Map<String, ? extends Class<?>> getRegistry() {
+    private Map<String, ? extends Class<?>> registry;
+
+    private FlagRegistry() {
+        initRegistry();
+    }
+
+    public static FlagRegistry getInstance() {
+        if(instance == null) {
+            instance = new FlagRegistry();
+        }
+        return instance;
+    }
+
+    private void initRegistry() {
         Reflections reflections = new Reflections("de.stea1th.program.flags", new TypeAnnotationsScanner(), new SubTypesScanner());
 
         Set<Class<?>> typesAnnotatedWith = reflections.getTypesAnnotatedWith(Flag.class);
 
-        return typesAnnotatedWith.stream().collect(Collectors.toMap(s -> s.getAnnotation(Flag.class).name(), s -> s));
+        registry = typesAnnotatedWith.stream().collect(Collectors.toMap(s -> s.getAnnotation(Flag.class).name(), s -> s));
+    }
+
+    public Map<String, ? extends Class<?>> getRegistryRecords(List<String> keys) {
+        return keys.stream().map(key -> registry.get(key)).collect(Collectors.toMap(s-> s.getAnnotation(Flag.class).flag(), s -> s));
     }
 }

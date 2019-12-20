@@ -24,8 +24,6 @@ public class ResourcesReader {
             System.out.println(e.getMessage());
             System.exit(-1);
         }
-
         return stringList;
     }
-
 }
