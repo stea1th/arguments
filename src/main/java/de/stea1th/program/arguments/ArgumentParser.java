@@ -1,4 +1,4 @@
-package de.stea1th.program;
+package de.stea1th.program.arguments;
 
 import de.stea1th.program.flags.IFlag;
 

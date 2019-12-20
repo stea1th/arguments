@@ -1,4 +1,4 @@
-package de.stea1th.program;
+package de.stea1th.program.readers;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;

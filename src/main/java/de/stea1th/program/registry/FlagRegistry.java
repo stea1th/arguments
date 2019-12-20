@@ -1,4 +1,4 @@
-package de.stea1th.program;
+package de.stea1th.program.registry;
 
 import de.stea1th.program.flags.Flag;
 import org.reflections.Reflections;

@@ -1,4 +1,4 @@
-package de.stea1th.program;
+package de.stea1th.program.arguments;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

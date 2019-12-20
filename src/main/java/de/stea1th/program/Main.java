@@ -1,8 +1,14 @@
 package de.stea1th.program;
 
+import de.stea1th.program.arguments.ArgumentOrganizer;
+import de.stea1th.program.arguments.ArgumentParser;
+import de.stea1th.program.arguments.OrganizerResult;
+import de.stea1th.program.readers.ResourcesReader;
+import de.stea1th.program.registry.FlagRegistry;
+
 import java.util.List;
 
-@SuppressWarnings (value="unchecked")
+//@SuppressWarnings (value="unchecked")
 public class Main {
 
     public static void main(String[] args) {
