@@ -15,9 +15,9 @@ public class ArgumentParser {
                 String key = matcher.group();
                 String value;
                 if (i + 1 < args.length) {
-                    value = pattern.matcher(args[i + 1]).matches() ? "x" : args[i + 1];
+                    value = pattern.matcher(args[i + 1]).matches() ? "" : args[i + 1];
                 } else {
-                    value = "y";
+                    value = "";
                 }
                 parseResult.put(key.replace("-", ""), value);
             } else {

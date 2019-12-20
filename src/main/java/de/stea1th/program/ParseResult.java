@@ -1,7 +1,10 @@
 package de.stea1th.program;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toMap;
 
 public class ParseResult {
 
@@ -10,7 +13,7 @@ public class ParseResult {
     private String exceptionMessage;
 
     public ParseResult() {
-        argumentMap = new HashMap<>();
+        argumentMap = new LinkedHashMap<>();
     }
 
     public Map<String, String> getArgumentMap() {
@@ -31,6 +34,15 @@ public class ParseResult {
 
     public String get(String key) {
         return argumentMap.get(key);
+    }
+
+    public String getSortedKeys() {
+        return argumentMap
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .map(Map.Entry::getKey)
+                .collect(Collectors.joining());
     }
 
 

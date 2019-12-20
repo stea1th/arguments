@@ -1,13 +1,10 @@
 package de.stea1th.program;
 
-public class SchemaFactory {
+public abstract class SchemaBase {
 
     private ParseResult parseResult;
 
-
-
-    public SchemaFactory(ParseResult parseResult) {
+    public SchemaBase(ParseResult parseResult) {
         this.parseResult = parseResult;
     }
-
 }
