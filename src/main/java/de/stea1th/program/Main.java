@@ -9,6 +9,8 @@ public class Main {
         ParseResult parse = parser.parse(args);
         System.out.println(parse.getSortedKeys());
 
+        new ResourcesReader("default.conf").read(parse.getSortedKeys()).forEach(System.out::println);
+
 
 
     }

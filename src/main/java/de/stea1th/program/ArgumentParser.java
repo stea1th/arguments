@@ -22,7 +22,7 @@ public class ArgumentParser {
                 parseResult.put(key.replace("-", ""), value);
             } else {
                 if (i == 0) {
-                    parseResult.setExceptionMessage("False argument begin");
+                    parseResult.setExceptionMessage("False arguments begin");
                 }
             }
         }
