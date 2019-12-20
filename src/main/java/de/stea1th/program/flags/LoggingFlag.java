@@ -1,8 +1,8 @@
-package de.stea1th.program;
+package de.stea1th.program.flags;
 
-public class LoggingFlag implements Flag<Boolean> {
-
-    private String name = "logging";
+@Flag(name = "logging",
+        flag = "l")
+public class LoggingFlag implements IFlag<Boolean> {
 
     private Boolean value;
 
