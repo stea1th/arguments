@@ -10,11 +10,17 @@ public class ResourcesReader {
 
     private String fileName;
 
+    private final static String DEFAULT_FILE_NAME = "default.conf";
+
+    public ResourcesReader() {
+        this.fileName = DEFAULT_FILE_NAME;
+    }
+
     public ResourcesReader(String fileName) {
         this.fileName = fileName;
     }
 
-    public List<String> read(String key) {
+    public List<String> readRegistryKeys(String key) {
         List<String> stringList = new ArrayList<>();
         try {
             Config config = ConfigFactory.parseResources(fileName);

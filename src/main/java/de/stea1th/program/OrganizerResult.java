@@ -4,13 +4,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ParseResult {
+public class OrganizerResult {
 
     private Map<String, String> argumentMap;
 
     private String exceptionMessage;
 
-    public ParseResult() {
+    public OrganizerResult() {
         argumentMap = new LinkedHashMap<>();
     }
 

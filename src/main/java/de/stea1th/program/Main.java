@@ -1,35 +1,26 @@
 package de.stea1th.program;
 
-import de.stea1th.program.flags.IFlag;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+@SuppressWarnings (value="unchecked")
 public class Main {
 
-    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static void main(String[] args) {
 
-        ArgumentParser parser = new ArgumentParser();
-        ParseResult parseResult = parser.parse(args);
+        ArgumentOrganizer argumentOrganizer = new ArgumentOrganizer();
+        OrganizerResult organizerResult = argumentOrganizer.organize(args);
 
-        List<String> keys = new ResourcesReader("default.conf").read(parseResult.getSortedKeys());
+        ResourcesReader resourcesReader = new ResourcesReader();
+        List<String> registryKeys = resourcesReader.readRegistryKeys(organizerResult.getSortedKeys());
 
         FlagRegistry registry = FlagRegistry.getInstance();
-        Map<String, ? extends Class<?>> registryRecords = registry.getRegistryRecords(keys);
 
-        Map<String, Object> result = new HashMap<>();
-        for (Map.Entry<String, ? extends Class<?>> entry : registryRecords.entrySet()) {
-            Map<String, String> argumentMap = parseResult.getArgumentMap();
-            String value = argumentMap.get(entry.getKey());
-            IFlag object = value != null ? (IFlag) entry.getValue().getConstructor(String.class).newInstance(value) :
-                    (IFlag) entry.getValue().getConstructor().newInstance();
-            result.put(entry.getKey(), object.getValue());
+        ArgumentParser argumentParser = new ArgumentParser(registry.getRegistryRecords(registryKeys));
+        argumentParser.parse(organizerResult);
 
-//            System.out.println(object.getValue().getClass().getSimpleName() + " -> " + object.getValue());
-        }
-        result.values().forEach(System.out::println);
+        String list = (String) argumentParser.getValue("-d");
+//        list.forEach(System.out::println);
+//        System.out.println(list.get(0) != null);
+        System.out.println(list);
     }
 }

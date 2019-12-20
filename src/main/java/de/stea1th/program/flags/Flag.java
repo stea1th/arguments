@@ -12,5 +12,4 @@ public @interface Flag {
     String name();
 
     String flag();
-
 }

@@ -1,4 +1,7 @@
-package de.stea1th.program.flags;
+package de.stea1th.program.flags.elements;
+
+import de.stea1th.program.flags.Flag;
+import de.stea1th.program.flags.FlagBase;
 
 @Flag(name = "port", flag = "p")
 public class PortFlag extends FlagBase<Integer> {
