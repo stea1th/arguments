@@ -21,7 +21,8 @@ public class ArgumentOrganizer {
                 } else {
                     value = "";
                 }
-                organizerResult.put(key.replace("-", ""), value);
+//                organizerResult.put(key.replace("-", ""), value);
+                organizerResult.put(key, value);
             } else {
                 if (i == 0) {
                     throw new MyException(String.format("<%s> false arguments begin.", args[i]));

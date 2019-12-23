@@ -25,7 +25,7 @@ public class ArgumentParser {
         Map<String, ? extends Class<?>> registryRecords = registry.getRegistryRecords(registryKeys);
 
         for (Map.Entry<String, ? extends Class<?>> entry : registryRecords.entrySet()) {
-            Map<String, String> argumentMap = organizerResult.getArgumentMap();
+            Map<String, String> argumentMap = organizerResult.getSortedArgumentMap();
             String value = argumentMap.get(entry.getKey());
             IFlag object;
             try {

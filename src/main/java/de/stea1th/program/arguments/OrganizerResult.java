@@ -1,5 +1,6 @@
 package de.stea1th.program.arguments;
 
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,10 +13,18 @@ public class OrganizerResult {
         argumentMap = new LinkedHashMap<>();
     }
 
-    public Map<String, String> getArgumentMap() {
-        return argumentMap;
+    public Map<String, String> getSortedArgumentMap() {
+        return argumentMap
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (k, v) -> {
+                            throw new IllegalStateException(String.format("Duplicate key %s", v));
+                        }, LinkedHashMap::new));
     }
-
 
     public String put(String key, String value) {
         return argumentMap.put(key, value);
@@ -26,13 +35,10 @@ public class OrganizerResult {
     }
 
     public String getSortedKeys() {
-        return argumentMap
-                .entrySet()
+        return getSortedArgumentMap()
+                .keySet()
                 .stream()
-                .sorted(Map.Entry.comparingByKey())
-                .map(Map.Entry::getKey)
+                .map(k -> k.replace("-", ""))
                 .collect(Collectors.joining());
     }
-
-
 }

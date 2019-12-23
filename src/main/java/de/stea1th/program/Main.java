@@ -18,13 +18,14 @@ public class Main {
             OrganizerResult organizerResult = argumentOrganizer.organize(args);
 
             ResourcesReader resourcesReader = new ResourcesReader();
-            List<String> registryKeys = resourcesReader.readRegistryKeys(organizerResult.getSortedKeys());
+            resourcesReader.readRegistryKeys(organizerResult.getSortedKeys());
+//            List<String> registryKeys = resourcesReader.readRegistryKeys(organizerResult.getSortedKeys());
 
-            ArgumentParser argumentParser = new ArgumentParser(registryKeys);
-            argumentParser.parse(organizerResult);
-
-            List<Integer> value = (List<Integer>) argumentParser.getValue("-h");
-            System.out.println(value);
+//            ArgumentParser argumentParser = new ArgumentParser(registryKeys);
+//            argumentParser.parse(organizerResult);
+//
+//            List<Integer> value = (List<Integer>) argumentParser.getValue("-d");
+//            System.out.println(value);
 
         } catch (MyException e) {
             System.out.println(e.getMessage());
