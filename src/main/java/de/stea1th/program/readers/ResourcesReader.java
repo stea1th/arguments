@@ -2,8 +2,8 @@ package de.stea1th.program.readers;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import de.stea1th.program.exceptions.MyException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ResourcesReader {
@@ -20,15 +20,14 @@ public class ResourcesReader {
         this.fileName = fileName;
     }
 
-    public List<String> readRegistryKeys(String key) {
-        List<String> stringList = new ArrayList<>();
+    public List<String> readRegistryKeys(String key) throws MyException {
+        List<String> stringList;
         try {
             Config config = ConfigFactory.parseResources(fileName);
 
             stringList = config.getStringList(String.format("schema.%s.names", key));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.exit(-1);
+            throw new MyException(e.getMessage());
         }
         return stringList;
     }

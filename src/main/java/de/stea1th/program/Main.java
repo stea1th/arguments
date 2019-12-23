@@ -3,30 +3,34 @@ package de.stea1th.program;
 import de.stea1th.program.arguments.ArgumentOrganizer;
 import de.stea1th.program.arguments.ArgumentParser;
 import de.stea1th.program.arguments.OrganizerResult;
+import de.stea1th.program.exceptions.MyException;
 import de.stea1th.program.readers.ResourcesReader;
-import de.stea1th.program.registry.FlagRegistry;
 
 import java.util.List;
 
-//@SuppressWarnings (value="unchecked")
+@SuppressWarnings(value = "unchecked")
 public class Main {
 
     public static void main(String[] args) {
 
-        ArgumentOrganizer argumentOrganizer = new ArgumentOrganizer();
-        OrganizerResult organizerResult = argumentOrganizer.organize(args);
+        try {
+            ArgumentOrganizer argumentOrganizer = new ArgumentOrganizer();
+            OrganizerResult organizerResult = argumentOrganizer.organize(args);
 
-        ResourcesReader resourcesReader = new ResourcesReader();
-        List<String> registryKeys = resourcesReader.readRegistryKeys(organizerResult.getSortedKeys());
+            ResourcesReader resourcesReader = new ResourcesReader();
+            List<String> registryKeys = resourcesReader.readRegistryKeys(organizerResult.getSortedKeys());
 
-        FlagRegistry registry = FlagRegistry.getInstance();
+            ArgumentParser argumentParser = new ArgumentParser(registryKeys);
+            argumentParser.parse(organizerResult);
 
-        ArgumentParser argumentParser = new ArgumentParser(registry.getRegistryRecords(registryKeys));
-        argumentParser.parse(organizerResult);
+            List<Integer> value = (List<Integer>) argumentParser.getValue("-h");
+            System.out.println(value);
 
-        String list = (String) argumentParser.getValue("-d");
-//        list.forEach(System.out::println);
-//        System.out.println(list.get(0) != null);
-        System.out.println(list);
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause().getMessage());
+        } finally {
+            System.exit(-1);
+        }
     }
 }

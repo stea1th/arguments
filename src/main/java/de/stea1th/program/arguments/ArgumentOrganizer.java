@@ -1,11 +1,13 @@
 package de.stea1th.program.arguments;
 
+import de.stea1th.program.exceptions.MyException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ArgumentOrganizer {
 
-    public OrganizerResult organize(String[] args) {
+    public OrganizerResult organize(String[] args) throws MyException {
         OrganizerResult organizerResult = new OrganizerResult();
         Pattern pattern = Pattern.compile("-\\w");
 
@@ -22,7 +24,7 @@ public class ArgumentOrganizer {
                 organizerResult.put(key.replace("-", ""), value);
             } else {
                 if (i == 0) {
-                    organizerResult.setExceptionMessage("False arguments begin.");
+                    throw new MyException(String.format("<%s> false arguments begin.", args[i]));
                 }
             }
         }

@@ -8,8 +8,6 @@ public class OrganizerResult {
 
     private Map<String, String> argumentMap;
 
-    private String exceptionMessage;
-
     public OrganizerResult() {
         argumentMap = new LinkedHashMap<>();
     }
@@ -18,13 +16,6 @@ public class OrganizerResult {
         return argumentMap;
     }
 
-    public String getExceptionMessage() {
-        return exceptionMessage;
-    }
-
-    public void setExceptionMessage(String exceptionMessage) {
-        this.exceptionMessage = exceptionMessage;
-    }
 
     public String put(String key, String value) {
         return argumentMap.put(key, value);
