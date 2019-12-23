@@ -8,11 +8,11 @@ public class OrganizerResult {
 
     private Map<String, String> argumentMap;
 
-    public OrganizerResult() {
+    OrganizerResult() {
         argumentMap = new LinkedHashMap<>();
     }
 
-    public Map<String, String> getSortedArgumentMap() {
+    Map<String, String> getSortedArgumentMap() {
         return argumentMap
                 .entrySet()
                 .stream()
@@ -25,7 +25,7 @@ public class OrganizerResult {
                         }, LinkedHashMap::new));
     }
 
-    public String put(String key, String value) {
+    String put(String key, String value) {
         return argumentMap.put(key, value);
     }
 

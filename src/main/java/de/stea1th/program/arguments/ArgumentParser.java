@@ -23,18 +23,18 @@ public class ArgumentParser {
     public Map<String, Object> parse(OrganizerResult organizerResult) throws MyException {
         Map<String, ? extends Class<?>> registryRecords = registry.getRegistryRecords(registryKeys);
 
-        for (Map.Entry<String, ? extends Class<?>> entry : registryRecords.entrySet()) {
+        registryRecords.forEach((key, value) -> {
             Map<String, String> argumentMap = organizerResult.getSortedArgumentMap();
-            String value = argumentMap.get(entry.getKey());
+            String argument = argumentMap.get(key);
             IFlag object;
             try {
-                object = value != null ? (IFlag) entry.getValue().getConstructor(String.class).newInstance(value) :
-                        (IFlag) entry.getValue().getConstructor().newInstance();
+                object = argument != null ? (IFlag) value.getConstructor(String.class).newInstance(argument) :
+                        (IFlag) value.getConstructor().newInstance();
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 throw new MyException(String.format("Can't create new object if parameter equal <%s>", e.getMessage()), e.getCause());
             }
-            result.put(entry.getKey(), object.getValue());
-        }
+            result.put(key, object.getValue());
+        });
         return result;
     }
 

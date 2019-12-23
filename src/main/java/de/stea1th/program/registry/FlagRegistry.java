@@ -31,10 +31,15 @@ public class FlagRegistry {
 
         Set<Class<?>> typesAnnotatedWith = reflections.getTypesAnnotatedWith(Flag.class);
 
-        registry = typesAnnotatedWith.stream().collect(Collectors.toMap(s -> s.getAnnotation(Flag.class).name(), s -> s));
+        registry = typesAnnotatedWith
+                .stream()
+                .collect(Collectors.toMap(s -> s.getAnnotation(Flag.class).name(), s -> s));
     }
 
     public Map<String, ? extends Class<?>> getRegistryRecords(Map<String, String> keyMap) {
-        return keyMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, s -> registry.get(s.getValue())));
+        return keyMap
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, s -> registry.get(s.getValue())));
     }
 }

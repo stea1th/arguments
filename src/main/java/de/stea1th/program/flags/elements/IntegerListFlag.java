@@ -18,7 +18,10 @@ public class IntegerListFlag extends FlagBase<List<Integer>> {
     private List<Integer> convertToList(String line) throws MyException {
         List<Integer> list;
         try {
-            list = Arrays.stream(line.split(",")).map(Integer::valueOf).collect(Collectors.toList());
+            list = Arrays
+                    .stream(line.split(","))
+                    .map(Integer::valueOf)
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             throw new MyException("Illegal arguments for integer cast. " + e.getMessage());
         }
