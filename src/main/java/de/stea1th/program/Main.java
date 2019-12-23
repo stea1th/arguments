@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         try {
+
             ArgumentOrganizer argumentOrganizer = new ArgumentOrganizer();
             OrganizerResult organizerResult = argumentOrganizer.organize(args);
 
@@ -26,7 +27,8 @@ public class Main {
             boolean value = (boolean) argumentParser.getValue("-l");
             System.out.println(value);
 
-        } catch (MyException e) {
+        } catch (MyException | IllegalStateException e) {
+
             System.out.println(e.getMessage());
             System.out.println(e.getCause().getMessage());
             System.exit(-1);

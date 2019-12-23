@@ -35,6 +35,6 @@ public class FlagRegistry {
     }
 
     public Map<String, ? extends Class<?>> getRegistryRecords(Map<String, String> keyMap) {
-        return keyMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, s -> registry.get(s.getValue().replace("\"", ""))));
+        return keyMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, s -> registry.get(s.getValue())));
     }
 }

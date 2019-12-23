@@ -25,10 +25,10 @@ public class ResourcesReader {
 
         Map<String, String> map = new HashMap<>();
         try {
-            System.out.println(key);
             Config config = ConfigFactory.parseResources(fileName);
 
-            config.getObjectList(String.format("schema.%s", key)).forEach(c -> c.forEach((key1, value) -> map.put(key1, value.render())));
+            config.getObjectList(String.format("schema.%s", key))
+                    .forEach(c -> c.forEach((key1, value) -> map.put(key1, value.render().replace("\"", ""))));
 
         } catch (Exception e) {
             throw new MyException(e.getMessage());
