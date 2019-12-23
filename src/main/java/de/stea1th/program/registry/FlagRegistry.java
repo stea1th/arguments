@@ -5,7 +5,6 @@ import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,7 +20,7 @@ public class FlagRegistry {
     }
 
     public static FlagRegistry getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new FlagRegistry();
         }
         return instance;
@@ -36,6 +35,6 @@ public class FlagRegistry {
     }
 
     public Map<String, ? extends Class<?>> getRegistryRecords(Map<String, String> keyMap) {
-        return keyMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, s-> registry.get(s.getValue().replace("\"", ""))));
+        return keyMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, s -> registry.get(s.getValue().replace("\"", ""))));
     }
 }

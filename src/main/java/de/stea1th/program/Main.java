@@ -29,7 +29,6 @@ public class Main {
         } catch (MyException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getCause().getMessage());
-        } finally {
             System.exit(-1);
         }
     }

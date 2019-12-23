@@ -1,6 +1,5 @@
 package de.stea1th.program.arguments;
 
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,10 +27,6 @@ public class OrganizerResult {
 
     public String put(String key, String value) {
         return argumentMap.put(key, value);
-    }
-
-    public String get(String key) {
-        return argumentMap.get(key);
     }
 
     public String getSortedKeys() {
