@@ -4,11 +4,11 @@ import de.stea1th.program.arguments.ArgumentOrganizer;
 import de.stea1th.program.arguments.ArgumentParser;
 import de.stea1th.program.arguments.OrganizerResult;
 import de.stea1th.program.exceptions.MyException;
+import de.stea1th.program.printers.Printer;
 import de.stea1th.program.readers.ResourcesReader;
 
 import java.util.Map;
 
-@SuppressWarnings(value = "unchecked")
 public class Main {
 
     public static void main(String[] args) {
@@ -24,8 +24,7 @@ public class Main {
             ArgumentParser argumentParser = new ArgumentParser(registryKeys);
             argumentParser.parse(organizerResult);
 
-            boolean value = (boolean) argumentParser.getValue("-l");
-            System.out.println(value);
+            Printer.print(argumentParser.getValue("-d"));
 
         } catch (MyException | IllegalStateException e) {
 
