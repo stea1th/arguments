@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Flag(name = "list of integers", flag = "d")
+@Flag(name = "list of integers")
 public class IntegerListFlag extends FlagBase<List<Integer>> {
 
     public IntegerListFlag(String line) throws MyException {

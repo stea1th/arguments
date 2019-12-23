@@ -4,7 +4,7 @@ import de.stea1th.program.exceptions.MyException;
 import de.stea1th.program.flags.Flag;
 import de.stea1th.program.flags.FlagBase;
 
-@Flag(name = "port", flag = "p")
+@Flag(name = "port")
 public class PortFlag extends FlagBase<Integer> {
 
     public PortFlag(String line) throws MyException {

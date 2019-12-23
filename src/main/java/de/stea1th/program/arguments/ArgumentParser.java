@@ -6,18 +6,17 @@ import de.stea1th.program.registry.FlagRegistry;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ArgumentParser {
 
-    private List<String> registryKeys;
+    private Map<String, String> registryKeys;
 
     private Map<String, Object> result = new HashMap<>();
 
     private FlagRegistry registry = FlagRegistry.getInstance();
 
-    public ArgumentParser(List<String> registryKeys) {
+    public ArgumentParser(Map<String, String> registryKeys) {
         this.registryKeys = registryKeys;
     }
 
@@ -34,7 +33,7 @@ public class ArgumentParser {
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 throw new MyException(String.format("Can't create new object if parameter equal <%s>", e.getMessage()), e.getCause());
             }
-            result.put("-" + entry.getKey(), object.getValue());
+            result.put(entry.getKey(), object.getValue());
         }
         return result;
     }

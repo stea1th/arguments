@@ -33,12 +33,9 @@ public class FlagRegistry {
         Set<Class<?>> typesAnnotatedWith = reflections.getTypesAnnotatedWith(Flag.class);
 
         registry = typesAnnotatedWith.stream().collect(Collectors.toMap(s -> s.getAnnotation(Flag.class).name(), s -> s));
-
-        registry.forEach((k,v) -> System.out.println(k + " " +v));
     }
 
-    public Map<String, ? extends Class<?>> getRegistryRecords(List<String> keys) {
-        keys.forEach(s-> System.out.println(s));
-        return keys.stream().map(key -> registry.get(key)).collect(Collectors.toMap(s-> s.getAnnotation(Flag.class).flag(), s -> s));
+    public Map<String, ? extends Class<?>> getRegistryRecords(Map<String, String> keyMap) {
+        return keyMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, s-> registry.get(s.getValue().replace("\"", ""))));
     }
 }

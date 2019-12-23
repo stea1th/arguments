@@ -6,7 +6,7 @@ import de.stea1th.program.flags.FlagBase;
 import java.util.Arrays;
 import java.util.List;
 
-@Flag(name = "list of strings", flag = "g")
+@Flag(name = "list of strings")
 public class StringListFlag extends FlagBase<List<String>> {
 
     public StringListFlag(String line) {
