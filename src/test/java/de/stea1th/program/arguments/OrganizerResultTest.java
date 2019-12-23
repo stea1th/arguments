@@ -16,9 +16,9 @@ class OrganizerResultTest {
     void initTest() {
         organizerResult = new OrganizerResult();
         Map<String, String> map = new LinkedHashMap<>();
-        map.put("-l", "logging");
-        map.put("-d", "directory");
-        map.put("-p", "port");
+        map.put("-l", "");
+        map.put("-d", "/user/hallo");
+        map.put("-p", "8080");
         organizerResult.setArgumentMap(map);
     }
 
@@ -35,7 +35,7 @@ class OrganizerResultTest {
     @Test
     void put_NewKeyAndValue_AddedToArgumentMap() {
         String key = "-t";
-        String value = "time";
+        String value = "12:50";
 
         organizerResult.put(key, value);
         Map<String, String> argumentMap = organizerResult.getArgumentMap();

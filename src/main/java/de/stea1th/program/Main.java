@@ -24,7 +24,7 @@ public class Main {
             ArgumentParser argumentParser = new ArgumentParser(registryKeys);
             argumentParser.parse(organizerResult);
 
-            Printer.print(argumentParser.getValue("-d"));
+            Printer.print(argumentParser.getValue("-l"));
 
         } catch (MyException | IllegalStateException e) {
 

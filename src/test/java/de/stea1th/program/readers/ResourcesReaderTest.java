@@ -20,11 +20,10 @@ class ResourcesReaderTest {
     @Test
     void readRegistryKeys_PutKeyDLP_ReturnLogging() {
 
-        String expected = "logging";
+        String expected = "boolean";
         String schema = "dlp";
         String key = "-l";
         int count = 3;
-
 
         Map<String, String> currentMap = resourcesReader.readRegistryKeys(schema);
 

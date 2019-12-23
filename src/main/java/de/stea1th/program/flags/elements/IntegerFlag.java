@@ -4,10 +4,10 @@ import de.stea1th.program.exceptions.MyException;
 import de.stea1th.program.flags.Flag;
 import de.stea1th.program.flags.FlagBase;
 
-@Flag(name = "port")
-public class PortFlag extends FlagBase<Integer> {
+@Flag(name = "integer")
+public class IntegerFlag extends FlagBase<Integer> {
 
-    public PortFlag(String line) throws MyException {
+    public IntegerFlag(String line) throws MyException {
         this.value = convertToInt(line);
     }
 

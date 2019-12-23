@@ -30,9 +30,9 @@ class FlagRegistryTest {
     @Test
     void getRegistryRecords_PutCorrectKeyMap_ExpectedClass() {
         Map<String, String> keyMap = new HashMap<>();
-        keyMap.put("-l", "logging");
-        keyMap.put("-d", "directory");
-        String expected = "de.stea1th.program.flags.elements.LoggingFlag";
+        keyMap.put("-l", "boolean");
+        keyMap.put("-d", "string");
+        String expected = "de.stea1th.program.flags.elements.BooleanFlag";
 
         Map<String, ? extends Class<?>> registryRecords = flagRegistry.getRegistryRecords(keyMap);
 
