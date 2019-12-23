@@ -1,5 +1,6 @@
 package de.stea1th.program.registry;
 
+import de.stea1th.program.exceptions.MyException;
 import de.stea1th.program.flags.Flag;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
@@ -36,10 +37,15 @@ public class FlagRegistry {
                 .collect(Collectors.toMap(s -> s.getAnnotation(Flag.class).name(), s -> s));
     }
 
-    public Map<String, ? extends Class<?>> getRegistryRecords(Map<String, String> keyMap) {
+    public Map<String, ? extends Class<?>> getRegistryRecords(Map<String, String> keyMap) throws MyException {
         return keyMap
                 .entrySet()
                 .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, s -> registry.get(s.getValue())));
+                .collect(Collectors.toMap(Map.Entry::getKey, s ->
+                {
+                    Class<?> aClass = registry.get(s.getValue());
+                    if (aClass == null) throw new MyException(String.format("No such <%s> record.", s.getValue()));
+                    return aClass;
+                }));
     }
 }

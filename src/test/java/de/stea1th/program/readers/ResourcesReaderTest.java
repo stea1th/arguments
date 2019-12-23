@@ -18,7 +18,7 @@ class ResourcesReaderTest {
     }
 
     @Test
-    void readRegistryKeys_putKeyDLP_returnLogging() {
+    void readRegistryKeys_PutKeyDLP_ReturnLogging() {
 
         String expected = "logging";
         String schema = "dlp";
@@ -33,7 +33,7 @@ class ResourcesReaderTest {
     }
 
     @Test
-    void readRegistryKeys_putFalseSchema_expectedMyException() {
+    void readRegistryKeys_PutFalseSchema_ExpectedMyException() {
 
         String falseSchema = "tdb";
 
